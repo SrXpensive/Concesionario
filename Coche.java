@@ -81,8 +81,8 @@ public class Coche {
     public void setRevisiones(boolean[] revisiones) {
         this.revisiones = revisiones;
     }
-    public void aumentarPrecioPorcentaje(double porcentaje){
-        setPrecio(this.precio+(this.precio*porcentaje/100));
+    public void aumentarPrecioPorcentaje(double q){
+        setPrecio(this.precio*(1+q/100));
     }
     public void mostrarInfo(){
         String revisado;
