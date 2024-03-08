@@ -18,6 +18,15 @@ public class Coche {
         this.revisar = revisar;
     }
 
+    public Coche(int numBastidor, String matricula, String marca, String modelo, String color, double precio) {
+        this.numBastidor = numBastidor;
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.precio = precio;
+    }
+
     public int getNumBastidor() {
         return numBastidor;
     }
@@ -99,4 +108,8 @@ public class Coche {
         System.out.println("Precio: "+getPrecio());
         System.out.println("Revisado: "+revisado);
     }
+    public String toString(){
+        return this.matricula+" - "+this.marca+" "+this.modelo;
+    }
+
 }
