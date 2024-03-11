@@ -26,6 +26,7 @@ public class Coche {
         this.color = color;
         this.precio = precio;
     }
+    public Coche(){}
 
     public int getNumBastidor() {
         return numBastidor;
