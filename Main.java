@@ -24,5 +24,14 @@ public class Main {
         if(!cocheAnt.revisar(new boolean []{false,false})){
             System.out.println("No se ha podido realizar la copia");
         }
+        mostrarKms(cocheNu);
+        mostrarKms(cocheAnt);
+    }
+    public static void mostrarKms(Coche c){
+        if(c instanceof Coche2mano){
+            System.out.println("Coche de segunda mano con "+((Coche2mano) c).getKm()+" kms");
+        }else{
+            System.out.println("Coche nuevo, 0 kms");
+        }
     }
 }
