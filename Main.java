@@ -1,5 +1,25 @@
 public class Main {
     public static void main(String[] args) {
+        int opcion=0;
+
+        do{
+            System.out.println("1. Propuesto");
+            opcion= Leer.leerEntero("Introduce una opcion");
+            switch(opcion){
+                case 1:
+                    propuesto();
+            }
+        }while(opcion !=0);
+        
+    }
+    public static void mostrarKms(Coche c){
+        if(c instanceof Coche2mano){
+            System.out.println("Coche de segunda mano con "+((Coche2mano) c).getKm()+" kms");
+        }else{
+            System.out.println("Coche nuevo, 0 kms");
+        }
+    }
+    public static void propuesto(){
         Coche cocheNu = new Coche(2335,"7328-JDS","Ford","Fiesta","Negro",32000);
         Coche2mano cocheAnt = new Coche2mano(3564,"9753-KLM","Renault","Coupé","Blanco",45000,30000,4);
         Coche cocheNu2 = new Coche(9976,"5463-GHT","Peugeot","206","Gris",45000);
@@ -26,12 +46,5 @@ public class Main {
         }
         mostrarKms(cocheNu);
         mostrarKms(cocheAnt);
-    }
-    public static void mostrarKms(Coche c){
-        if(c instanceof Coche2mano){
-            System.out.println("Coche de segunda mano con "+((Coche2mano) c).getKm()+" kms");
-        }else{
-            System.out.println("Coche nuevo, 0 kms");
-        }
     }
 }
