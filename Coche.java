@@ -6,7 +6,7 @@ public class Coche {
     private String modelo;
     private String color;
     private double precio;
-    private boolean revisar;
+    private boolean revisar = true;
     private boolean[] revisiones = new boolean[5];
     public Coche(int numBastidor, String matricula, String marca, String modelo, String color, double precio, boolean revisar) {
         this.numBastidor = numBastidor;
@@ -110,6 +110,28 @@ public class Coche {
     }
     public String toString(){
         return this.matricula+" - "+this.marca+" "+this.modelo;
+    }
+    public boolean revisar(){
+        for(int i=0; i < this.revisiones.length;i++){
+            if(!this.revisiones[i]){
+                this.revisiones[i]=true;
+                if(i == this.revisiones.length){
+                    this.revisar = false;
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public boolean revisar(boolean [] revisiones){
+        if (revisiones.length == 5){
+            for(int i = 0; i < revisiones.length;i++){
+                this.revisiones[i] = revisiones[i];
+            }
+        }else{
+            return false;
+        }
+        return true;
     }
 
 }

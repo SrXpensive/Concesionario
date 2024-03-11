@@ -21,5 +21,8 @@ public class Main {
             System.out.println(c);
             System.out.println("----------");
         }
+        if(!cocheAnt.revisar(new boolean []{false,false})){
+            System.out.println("No se ha podido realizar la copia");
+        }
     }
 }
