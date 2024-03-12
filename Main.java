@@ -1,14 +1,18 @@
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         int opcion;
         ArrayList<Coche> coches = new ArrayList<>();
-        Coche c = new Coche();
         do{
             System.out.println("1. Propuesto");
             System.out.println("2. Información del vehículo");
             System.out.println("3. Alta de un vehículo");
+            System.out.println("4. Baja de un vehículo");
+            System.out.println("5. Mostrar la información de todos los coches");
+            System.out.println("6. Borrado total");
             System.out.println("0. Salir");
             opcion= Leer.leerEntero("Introduce una opción: ");
             switch(opcion){
@@ -19,7 +23,16 @@ public class Main {
                     informacion(coches);
                     break;
                 case 3:
-                    alta(c,coches);
+                    alta(coches);
+                    break;
+                case 4:
+                    baja(coches);
+                    break;
+                case 5:
+                    mostrarTodos(coches);
+                    break;
+                case 6:
+                    borrar(coches);
                     break;
             }
         }while(opcion !=0);
@@ -62,10 +75,12 @@ public class Main {
     public static void informacion(ArrayList<Coche> array){
         int num;
         if (array.isEmpty()){
+            System.out.println("------------");
             System.out.println("No hay coches para solicitar información");
+            System.out.println("------------");
         }else{
             for(int i = 0; i<array.size();i++){
-                System.out.println(((i+1)+". "+array.get(i)));
+                System.out.println((i+1)+". "+array.get(i));
             }
             num = Leer.leerEntero("Escoge el coche del que quieres ver los datos: ");
             System.out.println("----------");
@@ -79,9 +94,11 @@ public class Main {
                 System.out.println("Número de kilómetros: "+((Coche2mano) array.get(num-1)).getKm()+" kms");
                 System.out.println("Años: "+((Coche2mano) array.get(num-1)).getAnios());
             }
+            System.out.println("----------");
         }
     }
-    public static void alta(Coche car,ArrayList<Coche> array){
+    public static void alta(ArrayList<Coche> array){
+        Coche car;
         int numBas = Leer.leerEntero("Introduce el número de bastidor: ");
         String mat = Leer.leerTexto("Introduce la matrícula: ");
         String brand = Leer.leerTexto("Introduce la marca del coche: ");
@@ -97,5 +114,69 @@ public class Main {
             car = new Coche(numBas,mat,brand,mod,col,price);
         }
         array.add(car);
+    }
+    public static void baja(ArrayList<Coche> array){
+        int num;
+        for(int i = 0; i< array.size();i++){
+            System.out.println((i+1)+". "+array.get(i));
+        }
+        num = Leer.leerEntero("Introduce el número del coche que quieres dar de baja: ");
+        array.remove(num-1);
+        System.out.println("------------");
+        System.out.println("Baja realizada con éxito");
+    }
+    public static void mostrarTodos(ArrayList<Coche> array){
+        if (array.isEmpty()){
+            System.out.println("----------");
+            System.out.println("No hay información que mostrar");
+            System.out.println("----------");
+        }
+        for(Coche c:array){
+            System.out.println("-----------");
+            System.out.println("Marca: "+c.getMarca());
+            System.out.println("Matrícula: "+c.getMatricula());
+            System.out.println("Modelo: "+c.getModelo());
+            System.out.println("Color: "+c.getColor());
+            System.out.println("Número de bastidor: "+c.getNumBastidor());
+            System.out.println("Precio: "+c.getPrecio());
+            if(c instanceof Coche2mano){
+                System.out.println("Kilómetros: "+((Coche2mano) c).getKm());
+                System.out.println("Años: "+((Coche2mano) c).getAnios());
+            }
+            System.out.println("-----------");
+        }
+    }
+    public static void borrar(ArrayList<Coche> array){
+        int opcion1;
+        if(array.isEmpty()){
+            System.out.println("-----------");
+            System.out.println("No hay coches para borrar");
+            System.out.println("-----------");
+        }else {
+            System.out.println("El borrado será irreversible, ¿estás seguro?");
+            System.out.println("1. Si");
+            System.out.println("2. No");
+            opcion1 = Leer.leerEntero("Opción: ");
+            if (opcion1 == 1) {
+                System.out.println("¿De verdad? Piénsalo bien");
+                System.out.println("1. Si");
+                System.out.println("2. No");
+                opcion1 = Leer.leerEntero("Opción: ");
+                if (opcion1 == 1) {
+                    array.clear();
+                    System.out.println("-----------");
+                    System.out.println("Información borrada por completo");
+                    System.out.println("-----------");
+                } else {
+                    System.out.println("-----------");
+                    System.out.println("Proceso de borrado abortado con éxito");
+                    System.out.println("-----------");
+                }
+            } else {
+                System.out.println("-----------");
+                System.out.println("Proceso de borrado abortado con éxito");
+                System.out.println("-----------");
+            }
+        }
     }
 }
